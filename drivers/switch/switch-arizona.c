@@ -548,7 +548,7 @@ static int arizona_hpdet_d_calibrate(const struct arizona_extcon_info *info,
 	n = div_s64(1000000000000, arizona_hpdet_d_ranges[range].C3 +
 			((arizona_hpdet_d_ranges[range].C4_x_C3 * gradx2) / 2));
 	n = val - n;
-	if (n == 0)
+	if (n <= 0)
 		return ARIZONA_HPDET_MAX;
 
 	val = arizona_hpdet_d_ranges[range].C0 +

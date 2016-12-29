@@ -104,12 +104,11 @@ static u64 check_timestamp(struct inv_mpu_state *st, u16 hdr, u8 *buf_data1, u8 
 	u64 delay_ns = NSEC_PER_SEC / st->sensor[ind].rate;
 	u64 shift_t = delay_ns >> 1;;
 
+	if (ind == SENSOR_STEP)
+		return t;
+
 	if ((s64)t < (s64)t_old) {
 		t = t_old + delay_ns;
-		return t;
-	}
-
-	if (ind == SENSOR_STEP) {
 		return t;
 	}
 
@@ -2117,6 +2116,7 @@ void inv_init_sensor_struct(struct inv_mpu_state *st)
 			st->sensor[i].dur  = NSEC_PER_SEC /
 						INIT_DMP_OUTPUT_RATE;
 		}
+		st->sensor[i].old_ts = 0ULL;
 	}
 
 	st->sensor[SENSOR_ACCEL].send_data     = inv_send_accel_data;

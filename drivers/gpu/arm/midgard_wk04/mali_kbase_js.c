@@ -1156,6 +1156,10 @@ STATIC kbasep_js_release_result kbasep_js_runpool_release_ctx_internal(kbase_dev
 	 *
 	 * Assert about out calling contract
 	 */
+	 /* MALI_SEC_INTEGRATION */
+	if (js_devdata->runpool_irq.per_as_data[kctx_as_nr].kctx != kctx)
+		return release_result;
+
 	current_as = &kbdev->as[kctx_as_nr];
 	mutex_lock(&current_as->transaction_mutex);
 	spin_lock_irqsave(&js_devdata->runpool_irq.lock, flags);

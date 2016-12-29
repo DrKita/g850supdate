@@ -43,6 +43,6 @@
 #define EPI_VERSION_DEV		1.47.15
 
 /* Driver Version String, ASCII, 32 chars max */
-#define	EPI_VERSION_STR		"1.47.15 (r)"
+#define	EPI_VERSION_STR		"1.47.15 (security_patch)"
 
 #endif /* _epivers_h_ */
